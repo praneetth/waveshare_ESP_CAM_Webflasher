@@ -2,23 +2,28 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Waveshare ESP32-S3-CAM Web Flasher</title>
 
-    <!-- Load ESP Web Tools install button (Web Serial based flasher) -->
     <script
       type="module"
       src="https://unpkg.com/esp-web-tools@latest/dist/web/install-button.js"
     ></script>
 
     <style>
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
           sans-serif;
-        max-width: 900px;
+        max-width: 960px;
         margin: 0 auto;
         padding: 2rem 1rem 4rem;
         background: #0b1020;
         color: #f5f5f5;
+        line-height: 1.6;
       }
 
       h1 {
@@ -27,7 +32,8 @@
       }
 
       h2 {
-        margin-top: 2rem;
+        margin-top: 0;
+        margin-bottom: 1rem;
       }
 
       .subtitle {
@@ -44,7 +50,8 @@
       }
 
       .board-wrapper img {
-        max-width: 260px;
+        max-width: 280px;
+        width: 100%;
         border-radius: 12px;
         box-shadow: 0 14px 40px rgba(0, 0, 0, 0.65);
         background: #111;
@@ -56,22 +63,48 @@
         padding: 1.5rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
         margin-bottom: 2rem;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.06);
       }
 
       .steps {
-        list-style: decimal;
-        padding-left: 1.5rem;
+        padding-left: 1.4rem;
       }
 
       .steps li {
+        margin-bottom: 0.75rem;
+      }
+
+      .bullet-list {
+        padding-left: 1.2rem;
+        margin: 0.5rem 0 0;
+      }
+
+      .bullet-list li {
         margin-bottom: 0.5rem;
       }
 
+      .purchase-links {
+        display: grid;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .link-box {
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        border-radius: 12px;
+        padding: 1rem;
+      }
+
+      .link-box strong {
+        display: block;
+        margin-bottom: 0.4rem;
+      }
+
       esp-web-install-button button[slot="activate"] {
-        padding: 0.75rem 1.75rem;
+        padding: 0.8rem 1.8rem;
         font-size: 1rem;
-        font-weight: 600;
+        font-weight: 700;
         border-radius: 999px;
         border: none;
         background: linear-gradient(120deg, #4ade80, #22c55e, #22d3ee);
@@ -106,13 +139,30 @@
 
       code {
         background: rgba(15, 23, 42, 0.9);
-        padding: 0.15rem 0.3rem;
+        padding: 0.15rem 0.35rem;
         border-radius: 4px;
-        font-size: 0.9rem;
+        font-size: 0.92rem;
       }
 
       a {
         color: #38bdf8;
+        word-break: break-word;
+      }
+
+      .note {
+        background: rgba(34, 211, 238, 0.08);
+        border-left: 4px solid #22d3ee;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 1rem;
+      }
+
+      .warn {
+        background: rgba(249, 115, 115, 0.08);
+        border-left: 4px solid #f97373;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 1rem;
       }
     </style>
   </head>
@@ -120,27 +170,59 @@
   <body>
     <h1>Waveshare ESP32-S3-CAM Web Flasher</h1>
     <p class="subtitle">
-      Flash the latest firmware to your Waveshare ESP32-S3-CAM-OVxxxx directly
-      from your browser.
+      Flash the firmware to your ESP32-S3-CAM board directly from your browser
+      and complete the Xiaozhi AI setup.
     </p>
 
     <div class="board-wrapper">
-      <!-- Board image from Waveshare product page -->
       <img
         src="https://www.waveshare.com/media/catalog/product/cache/1/image/560x560/9df78eab33525d08d6e5fb8d27136e95/e/s/esp32-s3-cam-ov3660-1.jpg"
-        alt="Waveshare ESP32-S3-CAM-OVxxxx board"
+        alt="Waveshare ESP32-S3-CAM board"
       />
+    </div>
+
+    <div class="card">
+      <h2>Buy the Board</h2>
+      <p>
+        This project is for the ESP32-S3 camera development board with OV5640.
+        Waveshare describes the ESP32-S3-CAM-OVxxxx as an ESP32-S3 based AIoT
+        camera development board, and the linked product page is the OV5640
+        version. <a href="https://docs.waveshare.com/ESP32-S3-CAM-OVxxxx" target="_blank" rel="noopener noreferrer">Board documentation</a> and
+        <a href="https://www.waveshare.com/esp32-s3-cam-ov5640.htm?sku=33699" target="_blank" rel="noopener noreferrer">product page</a>. 
+      </p>
+
+      <div class="purchase-links">
+        <div class="link-box">
+          <strong>For India</strong>
+          <a
+            href="https://hubtronics.in/esp32-s3-cam-ov5640?search=ESP32-S3%20AIoT%20Camera%20Development%20Board"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Buy from Hubtronics India
+          </a>
+        </div>
+
+        <div class="link-box">
+          <strong>For International / Outside India</strong>
+          <a
+            href="https://www.waveshare.com/esp32-s3-cam-ov5640.htm?sku=33699"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Buy from Waveshare
+          </a>
+        </div>
+      </div>
     </div>
 
     <div class="card center">
       <h2>Flash Firmware</h2>
       <p>
         Use <strong>Chrome</strong> or <strong>Edge</strong> on desktop.
-        Connect the board via USB, then click the button below.
+        Connect the board using USB, then click the button below.
       </p>
 
-      <!-- ESP Web Tools install button -->
-      <!-- Assumes manifest.json is in the same folder as this index.html -->
       <esp-web-install-button manifest="manifest.json">
         <button slot="activate">Connect &amp; Flash ESP32-S3-CAM</button>
         <span slot="unsupported" class="unsupported">
@@ -151,43 +233,149 @@
     </div>
 
     <div class="card">
-      <h2>Steps</h2>
+      <h2>Flashing Steps</h2>
       <ol class="steps">
-        >Connect the Waveshare ESP32-S3-CAM board to your PC via USB.</li>
-        >
-          Put the board into bootloader mode if needed (BOOT/EN button
-          combination, depending on your board revision).
+        <li>Connect the ESP32-S3-CAM board to your PC using a USB cable.</li>
+        <li>
+          If required, put the board into bootloader/download mode using the
+          BOOT and RESET/EN buttons, depending on your board revision.
         </li>
-        >Click <strong>Connect &amp; Flash ESP32-S3-CAM</strong>.</li>
-        >Select the correct serial port when the browser prompts you.</li>
-        >
-          Wait for the flashing process to complete, then reset or power-cycle
-          the board.
+        <li>
+          Click <strong>Connect &amp; Flash ESP32-S3-CAM</strong>.
+        </li>
+        <li>
+          Select the correct serial port when your browser asks for permission.
+        </li>
+        <li>Wait until the flashing process completes fully.</li>
+        <li>
+          After flashing is finished, press the <strong>RESET</strong> button on
+          the hardware.
         </li>
       </ol>
-      <p>
-        The firmware images and flash offsets are defined in
-        de>manifest.json</code>, which this page reads automatically.
+
+      <p class="note">
+        This page reads firmware details from <code>manifest.json</code>, so
+        your firmware files and flash offsets must be correctly defined there.
       </p>
     </div>
 
     <div class="card">
+      <h2>Setup After Flashing</h2>
+      <ol class="steps">
+        <li>
+          After pressing reset, wait for the device to boot completely.
+        </li>
+        <li>
+          The device will enter Wi-Fi configuration mode and speak a prompt.
+        </li>
+        <li>
+          In configuration mode, the board will create a Wi-Fi access point with
+          a name containing <code>xiaozhi</code>.
+        </li>
+        <li>
+          Open Wi-Fi settings on your phone or laptop and connect to that
+          <code>xiaozhi</code> access point.
+        </li>
+        <li>
+          A configuration page should open. If it does not open automatically,
+          open your browser and access the captive portal manually.
+        </li>
+        <li>
+          Enter your Wi-Fi name and password, then press <strong>Save</strong>.
+        </li>
+        <li>
+          After saving, the device will connect to your Wi-Fi and speak the
+          device verification code.
+        </li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Bind Device on Xiaozhi</h2>
+      <p>
+        Waveshare’s Xiaozhi tutorial says the device provides a 6-digit device
+        verification code after it is online, and that code is used to add the
+        device in the control panel. 
+        <a
+          href="https://www.waveshare.com/wiki/Xiaozhi_AI_Application_Tutorial"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Xiaozhi AI tutorial
+        </a>
+      </p>
+
+      <ol class="steps">
+        <li>
+          Open
+          <a href="https://xiaozhi.me/" target="_blank" rel="noopener noreferrer">
+            https://xiaozhi.me/
+          </a>
+          and log in to your account.
+        </li>
+        <li>
+          Enter the verification code spoken by the device.
+        </li>
+        <li>
+          Add the device in the control panel.
+        </li>
+        <li>
+          Set the <strong>device role</strong>.
+        </li>
+        <li>
+          Enter the <strong>device introduction</strong> or description.
+        </li>
+        <li>
+          Click <strong>Save</strong>.
+        </li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Final Step</h2>
+      <ol class="steps">
+        <li>Restart the device after saving the configuration.</li>
+        <li>Wait for it to boot and connect normally.</li>
+        <li>Your smart AI companion is now ready to use.</li>
+      </ol>
+
+      <div class="note">
+        If needed, wake the device again and listen carefully for the spoken
+        verification code. Waveshare notes that the code can be heard again by
+        waking the device if needed.
+      </div>
+    </div>
+
+    <div class="card">
       <h2>Troubleshooting</h2>
-      <ul class="steps">
-        >
-          If no ports appear, check the USB cable and that drivers are
-          installed.
+      <ul class="bullet-list">
+        <li>
+          If no serial port appears, check the USB cable and any required USB
+          drivers.
         </li>
-        >
-          If flashing fails, disconnect, re-enter bootloader mode and try
-          again.
+        <li>
+          If flashing fails, disconnect the board, re-enter download mode, and
+          try again.
         </li>
-        >
-          Make sure de>manifest.json</code> and
-          de>firmware/*.bin</code> files are present in this repository and
-          served by GitHub Pages.
+        <li>
+          Make sure <code>manifest.json</code> and all required
+          <code>.bin</code> files are present in the same GitHub Pages project.
+        </li>
+        <li>
+          If the configuration page does not open automatically, reconnect to
+          the <code>xiaozhi</code> access point and manually open the captive
+          portal page.
+        </li>
+        <li>
+          If you miss the verification code, wake the device again and listen to
+          the spoken code once more.
         </li>
       </ul>
+
+      <div class="warn">
+        For best results, use a desktop browser with Web Serial support such as
+        Chrome or Edge.
+      </div>
     </div>
   </body>
 </html>
